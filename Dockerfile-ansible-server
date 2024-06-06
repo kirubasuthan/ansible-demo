@@ -1,0 +1,11 @@
+FROM kirubasuthan/ubuntu-22:1.0 as base
+
+# Install Ansible
+RUN apt install -y software-properties-common
+RUN add-apt-repository --yes --update ppa:ansible/ansible
+ARG DEBIAN_FRONTEND noninteractive
+RUN apt install -y ansible
+
+# docker build -f ./Dockerfile-ansible-server --tag ubuntu-22-ansible-server
+# docker image tag ubuntu-22-ansible-server kirubasuthan/ubuntu-22-ansible-server:1.0
+# docker push kirubasuthan/ubuntu-22-ansible-server:1.0

@@ -1,0 +1,31 @@
+version: "3"
+services:
+  ubuntu:
+    image: kirubasuthan/ubuntu-22:1.0
+    restart: on-failure
+    command: ["sleep","infinity"]
+    deploy:
+      mode: replicated
+      replicas: 3
+    networks:
+      - ansible-nodes
+  ubuntu-ansible-server:
+    image: kirubasuthan/ubuntu-22-ansible-server:1.0
+    restart: on-failure
+    command: ["sleep", "infinity"]
+    networks:
+      - ansible-nodes 
+      - ansible-controller
+
+networks: 
+  ansible-nodes:
+    driver: bridge
+  ansible-controller:
+
+
+# Start Containers
+# docker-compose up -d
+# docker-compose ps 
+
+# Connect to the Ansible Controller host container
+# docker exec -it docker-ansible_ubuntu-ansible-server_1 /bin/bash 
